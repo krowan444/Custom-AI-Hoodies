@@ -48,10 +48,14 @@ export default function SubscriptionTable() {
                 {plans.map((plan) => (
                     <div
                         key={plan.name}
-                        className={`relative rounded-2xl border ${plan.popular ? 'border-cyan-500/50 bg-cyan-500/5' : 'border-white/10 bg-white/[0.02]'} p-8 hover:-translate-y-1 transition-all duration-300`}
+                        className={`relative rounded-3xl p-8 transition-all duration-300 hover:-translate-y-2 cursor-default group
+                        ${plan.popular
+                                ? 'border border-cyan-500/30 bg-gradient-to-b from-cyan-900/20 to-black/40 backdrop-blur-xl shadow-2xl shadow-cyan-500/10'
+                                : 'border border-white/5 bg-white/5 backdrop-blur-sm hover:bg-white/10 hover:border-white/10'
+                            }`}
                     >
                         {plan.popular && (
-                            <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white text-xs font-bold uppercase tracking-wider">
+                            <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 text-white text-[10px] font-bold uppercase tracking-widest shadow-lg shadow-cyan-500/40">
                                 Most Popular
                             </div>
                         )}

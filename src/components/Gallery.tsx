@@ -20,61 +20,46 @@ const hoodies = [
     { src: "/hoodies/IMG_E0593.JPG", alt: "Custom hoodie design 14" },
 ];
 
-const CARD_WIDTH = 320; // md width
-const CARD_GAP = 24; // gap-6 = 24px
-const SCROLL_AMOUNT = CARD_WIDTH + CARD_GAP;
+const NORMAL_SPEED = 0.5;
+const FAST_SPEED = 4;
 
 export default function Gallery() {
     const scrollRef = useRef<HTMLDivElement>(null);
-    const [isPaused, setIsPaused] = useState(false);
-    const animationRef = useRef<number>(0);
     const scrollPosRef = useRef(0);
+    const speedRef = useRef(NORMAL_SPEED);
+    const directionRef = useRef<1 | -1>(1); // 1 = right, -1 = left
 
-    const scroll = useCallback((direction: "left" | "right") => {
-        const container = scrollRef.current;
-        if (!container) return;
+    const handleArrowHover = useCallback((direction: "left" | "right") => {
+        directionRef.current = direction === "left" ? -1 : 1;
+        speedRef.current = FAST_SPEED;
+    }, []);
 
-        // Pause auto-scroll briefly when user clicks arrows
-        setIsPaused(true);
-
-        const amount = direction === "left" ? -SCROLL_AMOUNT : SCROLL_AMOUNT;
-        scrollPosRef.current += amount;
-
-        // Wrap around
-        const halfWidth = container.scrollWidth / 2;
-        if (scrollPosRef.current >= halfWidth) scrollPosRef.current = 0;
-        if (scrollPosRef.current < 0) scrollPosRef.current = halfWidth - SCROLL_AMOUNT;
-
-        container.scrollTo({ left: scrollPosRef.current, behavior: "smooth" });
-
-        // Resume auto-scroll after 3 seconds
-        setTimeout(() => setIsPaused(false), 3000);
+    const handleArrowLeave = useCallback(() => {
+        directionRef.current = 1; // resume normal right scroll
+        speedRef.current = NORMAL_SPEED;
     }, []);
 
     useEffect(() => {
         const scrollContainer = scrollRef.current;
         if (!scrollContainer) return;
 
-        const speed = 0.5;
+        let animationId: number;
 
         const animate = () => {
-            if (!isPaused) {
-                scrollPosRef.current += speed;
-                const halfWidth = scrollContainer.scrollWidth / 2;
-                if (scrollPosRef.current >= halfWidth) {
-                    scrollPosRef.current = 0;
-                }
-                scrollContainer.scrollLeft = scrollPosRef.current;
-            }
-            animationRef.current = requestAnimationFrame(animate);
+            scrollPosRef.current += speedRef.current * directionRef.current;
+
+            const halfWidth = scrollContainer.scrollWidth / 2;
+            if (scrollPosRef.current >= halfWidth) scrollPosRef.current = 0;
+            if (scrollPosRef.current < 0) scrollPosRef.current = halfWidth;
+
+            scrollContainer.scrollLeft = scrollPosRef.current;
+            animationId = requestAnimationFrame(animate);
         };
 
-        animationRef.current = requestAnimationFrame(animate);
+        animationId = requestAnimationFrame(animate);
+        return () => cancelAnimationFrame(animationId);
+    }, []);
 
-        return () => cancelAnimationFrame(animationRef.current);
-    }, [isPaused]);
-
-    // Duplicate items for seamless infinite scroll
     const allHoodies = [...hoodies, ...hoodies];
 
     return (
@@ -88,10 +73,11 @@ export default function Gallery() {
                 </p>
             </div>
 
-            <div className="relative group/gallery">
+            <div className="relative">
                 {/* Left Arrow */}
                 <button
-                    onClick={() => scroll("left")}
+                    onMouseEnter={() => handleArrowHover("left")}
+                    onMouseLeave={handleArrowLeave}
                     aria-label="Scroll left"
                     className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-black/70 border border-white/20 text-white flex items-center justify-center hover:bg-white/20 hover:border-white/40 transition-all backdrop-blur-sm shadow-lg cursor-pointer"
                 >
@@ -102,7 +88,8 @@ export default function Gallery() {
 
                 {/* Right Arrow */}
                 <button
-                    onClick={() => scroll("right")}
+                    onMouseEnter={() => handleArrowHover("right")}
+                    onMouseLeave={handleArrowLeave}
                     aria-label="Scroll right"
                     className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-black/70 border border-white/20 text-white flex items-center justify-center hover:bg-white/20 hover:border-white/40 transition-all backdrop-blur-sm shadow-lg cursor-pointer"
                 >
@@ -120,23 +107,18 @@ export default function Gallery() {
                     ref={scrollRef}
                     className="flex gap-6 overflow-hidden px-6"
                     style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-                    onMouseEnter={() => setIsPaused(true)}
-                    onMouseLeave={() => setIsPaused(false)}
                 >
                     {allHoodies.map((hoodie, i) => (
-                        <div
-                            key={i}
-                            className="flex-shrink-0 w-[280px] md:w-[320px] group"
-                        >
-                            <div className="relative aspect-square rounded-2xl overflow-hidden border border-white/10 bg-gradient-to-b from-white/5 to-transparent hover:border-violet-500/30 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-violet-500/10">
+                        <div key={i} className="flex-shrink-0 w-[280px] md:w-[320px] group">
+                            <div className="relative aspect-square rounded-3xl overflow-hidden border border-white/5 bg-white/5 backdrop-blur-sm transition-all duration-500 hover:border-violet-500/40 hover:shadow-2xl hover:shadow-violet-500/20 hover:scale-[1.02]">
                                 <Image
                                     src={hoodie.src}
                                     alt={hoodie.alt}
                                     fill
                                     sizes="(max-width: 768px) 280px, 320px"
-                                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                                    className="object-cover transition-transform duration-700 group-hover:scale-110"
                                 />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                             </div>
                         </div>
                     ))}

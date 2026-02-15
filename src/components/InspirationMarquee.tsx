@@ -8,7 +8,8 @@ const inspirations = [
 
 export default function InspirationMarquee() {
     return (
-        <section className="py-8 border-y border-white/5 overflow-hidden">
+        <section className="py-10 border-y border-white/5 bg-white/[0.02] backdrop-blur-sm overflow-hidden relative">
+            <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a] via-transparent to-[#0a0a0a] z-10 pointer-events-none" />
             <div className="flex animate-marquee whitespace-nowrap">
                 {[...inspirations, ...inspirations].map((item, i) => (
                     <span
