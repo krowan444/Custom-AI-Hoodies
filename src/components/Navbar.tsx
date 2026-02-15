@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+import { Button } from "@/components/ui/Button";
 
 export default function Navbar() {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -40,9 +41,9 @@ export default function Navbar() {
                 <div className="flex items-center gap-4">
                     <SignedOut>
                         <Link href="/sign-in">
-                            <button className="px-5 py-2 rounded-full bg-gradient-to-r from-violet-600 to-cyan-500 text-white text-sm font-semibold hover:opacity-90 transition-opacity shadow-lg shadow-violet-500/25">
+                            <Button size="sm" glow className="bg-gradient-to-r from-violet-600 to-cyan-500 border-none">
                                 Sign In
-                            </button>
+                            </Button>
                         </Link>
                     </SignedOut>
                     <SignedIn>
