@@ -17,12 +17,12 @@ export default function CTAStrip() {
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-6 justify-center">
-                    <Link href="/create">
-                        <Button size="lg" glow className="px-10 py-6 text-xl group gap-2">
-                            Start My Design <span className="transition-transform group-hover:translate-x-1">→</span>
+                    <Link href="/sign-in">
+                        <Button size="lg" glow className="px-10 py-6 text-xl">
+                            Start Designing Now
                         </Button>
                     </Link>
-                    <Link href="#pricing">
+                    <Link href="/membership">
                         <Button variant="outline" size="lg" className="px-10 py-6 text-xl">
                             View Pricing
                         </Button>

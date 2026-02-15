@@ -39,13 +39,13 @@ export default function Hero() {
 
             {/* CTA Buttons */}
             <div className="mt-10 flex flex-col sm:flex-row gap-5 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
-                <Link href="/create">
+                <Link href="/sign-in">
                     <Button size="lg" glow className="group gap-2">
-                        Create My Hoodie
+                        Start Creating
                         <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6" /></svg>
                     </Button>
                 </Link>
-                <Link href="#pricing">
+                <Link href="/membership">
                     <Button variant="outline" size="lg">
                         View Plans
                     </Button>
