@@ -10,14 +10,16 @@ const plans = [
         features: ["10 AI generations/month", "5% order discount", "Standard support", "Basic templates"],
         gradient: "from-violet-500 to-purple-600",
         popular: false,
+        stripeLink: "https://buy.stripe.com/dRmaEXgqgftS1wC01Odby01",
     },
     {
         name: "Creator",
-        price: "£19.99",
+        price: "£24.99",
         period: "/month",
         features: ["50 AI generations/month", "15% order discount", "Priority support", "Premium templates", "Early access features"],
         gradient: "from-cyan-500 to-blue-600",
         popular: true,
+        stripeLink: "https://buy.stripe.com/eVqaEXb5WepO7V04i4dby02",
     },
     {
         name: "Mogul",
@@ -26,6 +28,7 @@ const plans = [
         features: ["Unlimited generations", "25% order discount", "24/7 VIP support", "All templates", "Commercial license", "API access"],
         gradient: "from-amber-500 to-orange-600",
         popular: false,
+        stripeLink: "https://buy.stripe.com/aFa00jfmc95u4IOaGsdby03",
     },
 ];
 
@@ -67,11 +70,11 @@ export default function SubscriptionTable() {
                                 </li>
                             ))}
                         </ul>
-                        <Link href="/membership">
+                        <a href={plan.stripeLink} target="_blank" rel="noopener noreferrer">
                             <button className={`w-full py-3 rounded-xl font-semibold transition-all ${plan.popular ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white hover:opacity-90 shadow-lg shadow-cyan-500/25' : 'border border-white/20 text-white hover:bg-white/5'}`}>
                                 Get Started
                             </button>
-                        </Link>
+                        </a>
                     </div>
                 ))}
             </div>
