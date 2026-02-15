@@ -4,24 +4,20 @@ import Image from "next/image";
 import { useEffect, useRef } from "react";
 
 const hoodies = [
-    { src: "/hoodies/IMG_0535.PNG", alt: "Custom hoodie design 1" },
-    { src: "/hoodies/IMG_0536.PNG", alt: "Custom hoodie design 2" },
-    { src: "/hoodies/IMG_0537.PNG", alt: "Custom hoodie design 3" },
-    { src: "/hoodies/IMG_0538.PNG", alt: "Custom hoodie design 4" },
-    { src: "/hoodies/IMG_E0576.JPG", alt: "Custom hoodie design 5" },
-    { src: "/hoodies/IMG_E0577.JPG", alt: "Custom hoodie design 6" },
-    { src: "/hoodies/IMG_E0578.JPG", alt: "Custom hoodie design 7" },
-    { src: "/hoodies/IMG_E0581.JPG", alt: "Custom hoodie design 8" },
-    { src: "/hoodies/IMG_E0582.JPG", alt: "Custom hoodie design 9" },
-    { src: "/hoodies/IMG_E0584.JPG", alt: "Custom hoodie design 10" },
-    { src: "/hoodies/IMG_E0585.JPG", alt: "Custom hoodie design 11" },
-    { src: "/hoodies/IMG_E0586.JPG", alt: "Custom hoodie design 12" },
-    { src: "/hoodies/IMG_E0587.JPG", alt: "Custom hoodie design 13" },
-    { src: "/hoodies/IMG_E0589.JPG", alt: "Custom hoodie design 14" },
-    { src: "/hoodies/IMG_E0590.JPG", alt: "Custom hoodie design 15" },
-    { src: "/hoodies/IMG_E0591.JPG", alt: "Custom hoodie design 16" },
-    { src: "/hoodies/IMG_E0592.JPG", alt: "Custom hoodie design 17" },
-    { src: "/hoodies/IMG_E0593.JPG", alt: "Custom hoodie design 18" },
+    { src: "/hoodies/IMG_E0576.JPG", alt: "Custom hoodie design 1" },
+    { src: "/hoodies/IMG_E0577.JPG", alt: "Custom hoodie design 2" },
+    { src: "/hoodies/IMG_E0578.JPG", alt: "Custom hoodie design 3" },
+    { src: "/hoodies/IMG_E0581.JPG", alt: "Custom hoodie design 4" },
+    { src: "/hoodies/IMG_E0582.JPG", alt: "Custom hoodie design 5" },
+    { src: "/hoodies/IMG_E0584.JPG", alt: "Custom hoodie design 6" },
+    { src: "/hoodies/IMG_E0585.JPG", alt: "Custom hoodie design 7" },
+    { src: "/hoodies/IMG_E0586.JPG", alt: "Custom hoodie design 8" },
+    { src: "/hoodies/IMG_E0587.JPG", alt: "Custom hoodie design 9" },
+    { src: "/hoodies/IMG_E0589.JPG", alt: "Custom hoodie design 10" },
+    { src: "/hoodies/IMG_E0590.JPG", alt: "Custom hoodie design 11" },
+    { src: "/hoodies/IMG_E0591.JPG", alt: "Custom hoodie design 12" },
+    { src: "/hoodies/IMG_E0592.JPG", alt: "Custom hoodie design 13" },
+    { src: "/hoodies/IMG_E0593.JPG", alt: "Custom hoodie design 14" },
 ];
 
 export default function Gallery() {
