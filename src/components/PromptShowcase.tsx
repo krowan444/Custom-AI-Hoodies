@@ -16,7 +16,7 @@ const examples = [
     },
     {
         prompt: "Vintage japanese woodblock print of a cat surfing, textured",
-        image: "/hoodies/hoodie3.png",
+        image: "/hoodies/cat-surfing.png",
         color: "from-amber-400 to-orange-500"
     }
 ];
