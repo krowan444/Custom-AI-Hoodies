@@ -19,8 +19,6 @@
 !src/**
 !public/
 !public/**
-!app/
-!app/**
 !lib/
 !lib/**
 !.agent/

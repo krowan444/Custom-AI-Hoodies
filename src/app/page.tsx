@@ -1,63 +1,17 @@
-import Link from "next/link";
-import { auth } from "@clerk/nextjs/server";
-import { redirect } from "next/navigation";
-import { checkSubscription } from "@/lib/subscription";
+import Hero from "@/components/Hero";
+import InspirationMarquee from "@/components/InspirationMarquee";
+import HowItWorks from "@/components/HowItWorks";
+import Gallery from "@/components/Gallery";
+import SubscriptionTable from "@/components/SubscriptionTable";
 
-export default async function Home() {
-  const { userId } = await auth();
-  const isSubscribed = await checkSubscription();
-
+export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-24 bg-black text-white">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <div className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          <p className="flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-            Custom AI Hoodies <span className="ml-2 px-2 py-0.5 rounded bg-green-500 text-black text-xs font-bold">V2.0 LIVE</span>
-          </p>
-        </div>
-      </div>
-
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-to-br before:from-transparent before:to-blue-700 before:opacity-10 before:blur-2xl after:absolute after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-to-t after:from-sky-900 after:via-[#0141ff] after:opacity-40 after:blur-2xl z-[-1]">
-        <h1 className="text-6xl font-bold text-center">
-          Design Your Future
-        </h1>
-      </div>
-
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left mt-20">
-        <div className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30">
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Unique{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Create one-of-a-kind designs with our AI.
-          </p>
-        </div>
-      </div>
-
-      <div className="flex gap-4">
-        {!userId ? (
-          <Link href="/sign-in">
-            <button className="px-8 py-4 rounded-full bg-white text-black font-bold uppercase hover:opacity-90 transition-opacity">
-              Start My Design
-            </button>
-          </Link>
-        ) : !isSubscribed ? (
-          <Link href="/membership">
-            <button className="px-8 py-4 rounded-full bg-gradient-to-r from-violet-600 to-cyan-500 text-white font-bold uppercase hover:opacity-90 transition-opacity">
-              Get Membership
-            </button>
-          </Link>
-        ) : (
-          <Link href="/create">
-            <button className="px-8 py-4 rounded-full bg-gradient-to-r from-violet-600 to-cyan-500 text-white font-bold uppercase hover:opacity-90 transition-opacity">
-              Create Now
-            </button>
-          </Link>
-        )}
-      </div>
-    </main>
+    <>
+      <Hero />
+      <InspirationMarquee />
+      <HowItWorks />
+      <Gallery />
+      <SubscriptionTable />
+    </>
   );
 }

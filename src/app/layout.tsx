@@ -1,21 +1,18 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  variable: "--font-inter",
 });
 
 export const metadata: Metadata = {
-  title: "Custom AI Hoodies",
-  description: "Design your own AI-generated fashion.",
+  title: "Custom AI Hoodies | Design Your Imagination",
+  description: "Create unique, AI-generated hoodie designs with our powerful design studio. From imagination to your wardrobe in minutes.",
 };
 
 export default function RootLayout({
@@ -25,11 +22,11 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider>
-      <html lang="en">
-        <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        >
-          {children}
+      <html lang="en" className="dark">
+        <body className={`${inter.variable} antialiased bg-black text-white font-sans`}>
+          <Navbar />
+          <main>{children}</main>
+          <Footer />
         </body>
       </html>
     </ClerkProvider>
