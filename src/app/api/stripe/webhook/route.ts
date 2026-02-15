@@ -8,6 +8,7 @@ import Stripe from "stripe";
 
 export async function POST(req: Request) {
     const body = await req.text();
+    // Await headers() for Next.js 15 compatibility
     const signature = (await headers()).get("Stripe-Signature") as string;
 
     let event: Stripe.Event;
