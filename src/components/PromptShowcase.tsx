@@ -6,12 +6,12 @@ import Image from "next/image";
 const examples = [
     {
         prompt: "Cyberpunk samurai glitsch art, neon colors, detailed vector style",
-        image: "/hoodies/hoodie1.png", // Fallback to existing images
+        image: "/hoodies/samurai-hoodie.png", // Fallback to existing images
         color: "from-pink-500 to-rose-500"
     },
     {
         prompt: "Abstract geometric waves, vaporwave aesthetic, pastel gradients",
-        image: "/hoodies/hoodie2.png",
+        image: "/hoodies/abstract-hoodie.png",
         color: "from-cyan-400 to-blue-500"
     },
     {
