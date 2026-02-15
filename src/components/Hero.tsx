@@ -28,8 +28,8 @@ export default function Hero() {
             </h1>
 
             {/* Trust Line */}
-            <p className="text-violet-200/80 font-medium text-sm md:text-base mb-6 tracking-wide uppercase animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
-                👉 AI-powered designs worn by creators worldwide
+            <p className="text-violet-200/80 font-medium text-sm md:text-base mb-8 tracking-wide uppercase animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
+                👉 AI-powered custom fashion designed in seconds. Printed professionally. Delivered to your door.
             </p>
 
             {/* Subtitle */}
@@ -41,7 +41,7 @@ export default function Hero() {
             <div className="mt-10 flex flex-col sm:flex-row gap-5 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
                 <Link href="/create">
                     <Button size="lg" glow className="group gap-2">
-                        Start Creating
+                        Create My Hoodie
                         <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6" /></svg>
                     </Button>
                 </Link>

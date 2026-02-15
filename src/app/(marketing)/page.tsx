@@ -9,6 +9,7 @@ import SubscriptionTable from "@/components/SubscriptionTable";
 import FAQ from "@/components/FAQ";
 import CTAStrip from "@/components/CTAStrip";
 import TrustStrip from "@/components/TrustStrip";
+import IdentityBridge from "@/components/IdentityBridge";
 
 export default function Home() {
   return (
@@ -20,6 +21,7 @@ export default function Home() {
       <Gallery />
       <Testimonials />
       <HowItWorks />
+      <IdentityBridge />
       <SubscriptionTable />
       <FAQ />
       <CTAStrip />

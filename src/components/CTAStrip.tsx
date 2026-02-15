@@ -18,8 +18,8 @@ export default function CTAStrip() {
 
                 <div className="flex flex-col sm:flex-row gap-6 justify-center">
                     <Link href="/create">
-                        <Button size="lg" glow className="px-10 py-6 text-xl">
-                            Start Designing Now
+                        <Button size="lg" glow className="px-10 py-6 text-xl group gap-2">
+                            Start My Design <span className="transition-transform group-hover:translate-x-1">→</span>
                         </Button>
                     </Link>
                     <Link href="#pricing">
