@@ -1,0 +1,35 @@
+# Ignore EVERYTHING by default (npm hoisted deps to root)
+*
+
+# Then whitelist only what we need
+!.gitignore
+!package.json
+!package-lock.json
+!tsconfig.json
+!next.config.ts
+!middleware.ts
+!postcss.config.mjs
+!eslint.config.mjs
+!migration.sql
+!README.md
+!.env.example
+
+# Whitelist directories
+!src/
+!src/**
+!public/
+!public/**
+!app/
+!app/**
+!lib/
+!lib/**
+!.agent/
+!.agent/**
+
+# But still ignore these inside whitelisted dirs
+node_modules/
+.next/
+dist/
+*.tsbuildinfo
+.env*
+!.env.example
