@@ -1,49 +1,103 @@
 "use client";
 
-const designs = [
-    { prompt: "Cyberpunk Wolf", color: "#6d28d9" },
-    { prompt: "Neon Galaxy", color: "#0891b2" },
-    { prompt: "Abstract Waves", color: "#059669" },
-    { prompt: "Geometric Fox", color: "#dc2626" },
-    { prompt: "Retro Sunset", color: "#ea580c" },
-    { prompt: "Digital Dreams", color: "#7c3aed" },
+import Image from "next/image";
+import { useEffect, useRef } from "react";
+
+const hoodies = [
+    { src: "/hoodies/IMG_0535.PNG", alt: "Custom hoodie design 1" },
+    { src: "/hoodies/IMG_0536.PNG", alt: "Custom hoodie design 2" },
+    { src: "/hoodies/IMG_0537.PNG", alt: "Custom hoodie design 3" },
+    { src: "/hoodies/IMG_0538.PNG", alt: "Custom hoodie design 4" },
+    { src: "/hoodies/IMG_E0576.JPG", alt: "Custom hoodie design 5" },
+    { src: "/hoodies/IMG_E0577.JPG", alt: "Custom hoodie design 6" },
+    { src: "/hoodies/IMG_E0578.JPG", alt: "Custom hoodie design 7" },
+    { src: "/hoodies/IMG_E0581.JPG", alt: "Custom hoodie design 8" },
+    { src: "/hoodies/IMG_E0582.JPG", alt: "Custom hoodie design 9" },
+    { src: "/hoodies/IMG_E0584.JPG", alt: "Custom hoodie design 10" },
+    { src: "/hoodies/IMG_E0585.JPG", alt: "Custom hoodie design 11" },
+    { src: "/hoodies/IMG_E0586.JPG", alt: "Custom hoodie design 12" },
+    { src: "/hoodies/IMG_E0587.JPG", alt: "Custom hoodie design 13" },
+    { src: "/hoodies/IMG_E0589.JPG", alt: "Custom hoodie design 14" },
+    { src: "/hoodies/IMG_E0590.JPG", alt: "Custom hoodie design 15" },
+    { src: "/hoodies/IMG_E0591.JPG", alt: "Custom hoodie design 16" },
+    { src: "/hoodies/IMG_E0592.JPG", alt: "Custom hoodie design 17" },
+    { src: "/hoodies/IMG_E0593.JPG", alt: "Custom hoodie design 18" },
 ];
 
 export default function Gallery() {
+    const scrollRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const scrollContainer = scrollRef.current;
+        if (!scrollContainer) return;
+
+        let animationId: number;
+        let scrollPos = 0;
+        const speed = 0.5; // pixels per frame
+
+        const animate = () => {
+            scrollPos += speed;
+            // Reset when we've scrolled through half the items (since we duplicate them)
+            const halfWidth = scrollContainer.scrollWidth / 2;
+            if (scrollPos >= halfWidth) {
+                scrollPos = 0;
+            }
+            scrollContainer.scrollLeft = scrollPos;
+            animationId = requestAnimationFrame(animate);
+        };
+
+        animationId = requestAnimationFrame(animate);
+
+        // Pause on hover
+        const handleMouseEnter = () => cancelAnimationFrame(animationId);
+        const handleMouseLeave = () => {
+            animationId = requestAnimationFrame(animate);
+        };
+
+        scrollContainer.addEventListener("mouseenter", handleMouseEnter);
+        scrollContainer.addEventListener("mouseleave", handleMouseLeave);
+
+        return () => {
+            cancelAnimationFrame(animationId);
+            scrollContainer.removeEventListener("mouseenter", handleMouseEnter);
+            scrollContainer.removeEventListener("mouseleave", handleMouseLeave);
+        };
+    }, []);
+
+    // Duplicate items for seamless infinite scroll
+    const allHoodies = [...hoodies, ...hoodies];
+
     return (
-        <section className="py-24 px-6 max-w-7xl mx-auto">
-            <div className="text-center mb-16">
+        <section className="py-16 overflow-hidden">
+            <div className="text-center mb-10 px-6">
                 <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
-                    Recent Creations
+                    Inspiration Gallery
                 </h2>
                 <p className="text-white/50 text-lg max-w-2xl mx-auto">
-                    See what our community has been designing
+                    Real designs created by our AI — hover to pause, scroll to explore
                 </p>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
-                {designs.map((design, i) => (
+            <div
+                ref={scrollRef}
+                className="flex gap-6 overflow-hidden px-6"
+                style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+            >
+                {allHoodies.map((hoodie, i) => (
                     <div
                         key={i}
-                        className="group relative aspect-square rounded-2xl overflow-hidden border border-white/10 cursor-pointer hover:-translate-y-1 transition-all duration-300"
+                        className="flex-shrink-0 w-[280px] md:w-[320px] group"
                     >
-                        {/* Placeholder Gradient Design */}
-                        <div
-                            className="absolute inset-0"
-                            style={{
-                                background: `linear-gradient(135deg, ${design.color}40, ${design.color}20, #0a0a0a)`,
-                            }}
-                        />
-                        {/* Hoodie Silhouette */}
-                        <div className="absolute inset-0 flex items-center justify-center">
-                            <svg width="120" height="120" viewBox="0 0 120 120" fill="none" className="opacity-20 group-hover:opacity-40 transition-opacity">
-                                <path d="M60 20C50 20 42 28 40 38L25 55V80L35 85V100H85V85L95 80V55L80 38C78 28 70 20 60 20Z" stroke="white" strokeWidth="2" />
-                                <path d="M45 38C45 38 50 45 60 45C70 45 75 38 75 38" stroke="white" strokeWidth="2" />
-                            </svg>
-                        </div>
-                        {/* Label */}
-                        <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-                            <p className="text-white font-medium text-sm">{design.prompt}</p>
+                        <div className="relative aspect-square rounded-2xl overflow-hidden border border-white/10 bg-gradient-to-b from-white/5 to-transparent hover:border-violet-500/30 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-violet-500/10">
+                            <Image
+                                src={hoodie.src}
+                                alt={hoodie.alt}
+                                fill
+                                sizes="(max-width: 768px) 280px, 320px"
+                                className="object-cover group-hover:scale-105 transition-transform duration-500"
+                            />
+                            {/* Gradient overlay on hover */}
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                         </div>
                     </div>
                 ))}
