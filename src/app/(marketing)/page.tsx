@@ -18,8 +18,8 @@ export default function Home() {
       <FeatureGrid />
       <PromptShowcase />
       <Gallery />
-      <HowItWorks />
       <Testimonials />
+      <HowItWorks />
       <SubscriptionTable />
       <FAQ />
       <CTAStrip />

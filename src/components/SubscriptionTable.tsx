@@ -50,7 +50,10 @@ export default function SubscriptionTable() {
                 {plans.map((plan) => (
                     <GlassCard
                         key={plan.name}
-                        className={`p-8 flex flex-col h-full ${plan.popular ? 'border-cyan-500/30' : ''}`}
+                        className={`p-8 flex flex-col h-full bg-white/5 ${plan.popular
+                                ? 'border-violet-500/50 shadow-[0_0_50px_-10px_rgba(139,92,246,0.3)] bg-violet-500/5'
+                                : 'bg-white/5'
+                            }`}
                         hoverEffect={true}
                     >
                         {plan.popular && (

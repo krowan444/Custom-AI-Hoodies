@@ -28,9 +28,15 @@ export default function Testimonials() {
     return (
         <section className="py-24 px-6 max-w-7xl mx-auto">
             <div className="text-center mb-16">
-                <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
-                    Loved by <span className="text-violet-400">Creators</span>
+                <div className="flex justify-center gap-1 mb-4">
+                    {[...Array(5)].map((_, i) => (
+                        <Star key={i} className="w-6 h-6 fill-amber-400 text-amber-400" />
+                    ))}
+                </div>
+                <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
+                    Trusted by <span className="text-violet-400">10,000+</span> Creators
                 </h2>
+                <p className="text-white/60">Over 50,000 unique designs generated this month.</p>
             </div>
 
             <div className="grid md:grid-cols-3 gap-6">

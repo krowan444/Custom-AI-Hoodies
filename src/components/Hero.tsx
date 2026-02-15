@@ -27,8 +27,13 @@ export default function Hero() {
                 </span>
             </h1>
 
+            {/* Trust Line */}
+            <p className="text-violet-200/80 font-medium text-sm md:text-base mb-6 tracking-wide uppercase animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
+                👉 AI-powered designs worn by creators worldwide
+            </p>
+
             {/* Subtitle */}
-            <p className="mt-8 text-lg md:text-xl text-white/60 text-center max-w-2xl leading-relaxed text-balance animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+            <p className="text-lg md:text-xl text-white/60 mb-8 max-w-2xl mx-auto animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
                 Create unique, AI-generated hoodie designs that express your style. From imagination to reality in minutes.
             </p>
 
