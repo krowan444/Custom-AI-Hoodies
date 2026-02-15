@@ -23,17 +23,17 @@ export default function Navbar() {
 
                 {/* Desktop Nav Links */}
                 <div className="hidden md:flex items-center gap-8">
-                    <Link href="/" className="text-white/70 hover:text-white transition-colors text-sm font-medium">
-                        Home
+                    <Link href="#features" className="text-white/70 hover:text-white transition-colors text-sm font-medium">
+                        Features
                     </Link>
-                    <Link href="/membership" className="text-white/70 hover:text-white transition-colors text-sm font-medium">
-                        Membership
+                    <Link href="#how-it-works" className="text-white/70 hover:text-white transition-colors text-sm font-medium">
+                        How it Works
                     </Link>
-                    <Link href="/create" className="text-white/70 hover:text-white transition-colors text-sm font-medium">
-                        Create
+                    <Link href="#pricing" className="text-white/70 hover:text-white transition-colors text-sm font-medium">
+                        Pricing
                     </Link>
-                    <Link href="/account" className="text-white/70 hover:text-white transition-colors text-sm font-medium">
-                        Account
+                    <Link href="#faq" className="text-white/70 hover:text-white transition-colors text-sm font-medium">
+                        FAQ
                     </Link>
                 </div>
 
@@ -83,17 +83,17 @@ export default function Navbar() {
             {/* Mobile Menu Overlay */}
             {menuOpen && (
                 <div className="md:hidden fixed inset-0 top-[73px] bg-black/95 backdrop-blur-xl z-40 flex flex-col items-center justify-center gap-8">
-                    <Link href="/" onClick={() => setMenuOpen(false)} className="text-white text-2xl font-semibold hover:text-violet-400 transition-colors">
-                        Home
+                    <Link href="#features" onClick={() => setMenuOpen(false)} className="text-white text-2xl font-semibold hover:text-violet-400 transition-colors">
+                        Features
                     </Link>
-                    <Link href="/membership" onClick={() => setMenuOpen(false)} className="text-white text-2xl font-semibold hover:text-violet-400 transition-colors">
-                        Membership
+                    <Link href="#how-it-works" onClick={() => setMenuOpen(false)} className="text-white text-2xl font-semibold hover:text-violet-400 transition-colors">
+                        How It Works
                     </Link>
-                    <Link href="/create" onClick={() => setMenuOpen(false)} className="text-white text-2xl font-semibold hover:text-violet-400 transition-colors">
-                        Create
+                    <Link href="#pricing" onClick={() => setMenuOpen(false)} className="text-white text-2xl font-semibold hover:text-violet-400 transition-colors">
+                        Pricing
                     </Link>
-                    <Link href="/account" onClick={() => setMenuOpen(false)} className="text-white text-2xl font-semibold hover:text-violet-400 transition-colors">
-                        Account
+                    <Link href="#faq" onClick={() => setMenuOpen(false)} className="text-white text-2xl font-semibold hover:text-violet-400 transition-colors">
+                        FAQ
                     </Link>
                 </div>
             )}
