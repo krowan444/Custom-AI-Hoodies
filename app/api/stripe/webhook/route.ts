@@ -5,7 +5,7 @@ import { supabaseAdmin } from '@/lib/supabase-admin';
 
 export async function POST(req: Request) {
     const body = await req.text();
-    const signature = headers().get('Stripe-Signature') as string;
+    const signature = (await headers()).get('Stripe-Signature') as string;
 
     let event: Stripe.Event;
 
@@ -44,10 +44,8 @@ export async function POST(req: Request) {
 
     if (event.type === 'customer.subscription.created' || event.type === 'customer.subscription.updated' || event.type === 'customer.subscription.deleted') {
         const subscription = event.data.object as Stripe.Subscription;
+        const subData = subscription as unknown as Record<string, unknown>;
 
-        // We need to find the user_id associated with this customer.
-        // Ideally we stored it in 'checkout.session.completed'.
-        // Or we can search Supabase for the customer_id.
         const { data: userData } = await supabaseAdmin
             .from('subscriptions')
             .select('user_id')
@@ -61,8 +59,8 @@ export async function POST(req: Request) {
                 stripe_subscription_id: subscription.id,
                 status: subscription.status,
                 price_id: subscription.items.data[0].price.id,
-                current_period_start: new Date(subscription.current_period_start * 1000).toISOString(),
-                current_period_end: new Date(subscription.current_period_end * 1000).toISOString(),
+                current_period_start: new Date((subData.current_period_start as number) * 1000).toISOString(),
+                current_period_end: new Date((subData.current_period_end as number) * 1000).toISOString(),
                 cancel_at_period_end: subscription.cancel_at_period_end,
             });
         }

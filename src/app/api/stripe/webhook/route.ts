@@ -31,6 +31,7 @@ export async function POST(req: Request) {
         const subscription = await stripe.subscriptions.retrieve(
             session.subscription as string
         );
+        const subData = subscription as unknown as Record<string, unknown>;
 
         if (!session.metadata?.userId) {
             return NextResponse.json(
@@ -46,10 +47,10 @@ export async function POST(req: Request) {
             stripe_price_id: subscription.items.data[0].price.id,
             status: subscription.status,
             current_period_start: new Date(
-                subscription.current_period_start * 1000
+                (subData.current_period_start as number) * 1000
             ).toISOString(),
             current_period_end: new Date(
-                subscription.current_period_end * 1000
+                (subData.current_period_end as number) * 1000
             ).toISOString(),
         });
     }
@@ -57,6 +58,7 @@ export async function POST(req: Request) {
     // Handle subscription updates (upgrades/downgrades)
     if (event.type === "customer.subscription.updated") {
         const subscription = event.data.object as Stripe.Subscription;
+        const subData2 = subscription as unknown as Record<string, unknown>;
 
         await supabaseAdmin
             .from("subscriptions")
@@ -64,10 +66,10 @@ export async function POST(req: Request) {
                 stripe_price_id: subscription.items.data[0].price.id,
                 status: subscription.status,
                 current_period_start: new Date(
-                    subscription.current_period_start * 1000
+                    (subData2.current_period_start as number) * 1000
                 ).toISOString(),
                 current_period_end: new Date(
-                    subscription.current_period_end * 1000
+                    (subData2.current_period_end as number) * 1000
                 ).toISOString(),
             })
             .eq("stripe_subscription_id", subscription.id);
